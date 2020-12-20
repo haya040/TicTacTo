@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+    <img src="tic.jpg" alt="tic" height="150" width="300" class="center">
+   <style>
+   	body {
+  background: #ffffff;
+  text-align: center;
+}
+   	 .wrapper{
+    width: 400px;
+    height: 300px;
+    margin: 10px auto
+}
+.square{
+    width: 120px;
+    height: 120px;
+    background: #ede0d4;
+    margin: 5px;
+    font-size: 108px;
+    font-family: sans-serif;
+    text-align: center;
+    color: white;
+    float: left
+}
+   </style>
+
+    
+</head>
+
+<body>
+
+    <div class="wrapper">
+    <div class="square" id="A1" onclick="insert(this.id)"></div>
+    <div class="square" id="A2" onclick="insert(this.id)"></div>
+    <div class="square" id="A3" onclick="insert(this.id)"></div>
+    <div class="square" id="A4" onclick="insert(this.id)"></div>
+    <div class="square" id="A5" onclick="insert(this.id)"></div>
+    <div class="square" id="A6" onclick="insert(this.id)"></div>
+    <div class="square" id="A7" onclick="insert(this.id)"></div>
+    <div class="square" id="A8" onclick="insert(this.id)"></div>
+    <div class="square" id="A9" onclick="insert(this.id)"></div>
+
+    </div>
+    <script>
+        var turn = true;
+        var squares = [];
+        function rest(A,B,C){
+            document.getElementById('A'+A).style.color="#000";
+            document.getElementById('A'+B).style.color="#000";
+            document.getElementById('A'+C).style.color="#000";
+
+            setTimeout(function(){location.reload()},2000);
+        }
+        function checkWinner(){
+            for(var i=1; i<=9; i++){
+                squares[i] = document.getElementById('A'+i).innerHTML;
+            }
+            //horizontal
+            if(squares[1]==squares[2] && squares[2]==squares[3] && squares[1]!=""){
+            alert('player ' + squares[1] + ' wins the game')
+            rest(1,2,3);
+        }
+        if(squares[4]==squares[5] && squares[5]==squares[6] && squares[4]!=""){
+            alert('player ' + squares[4] + ' wins the game')
+            rest(4,5,6);
+        }
+        if(squares[7]==squares[8] && squares[8]==squares[9] && squares[7]!=""){
+            alert('player ' + squares[7] + ' wins the game')
+            rest(7,8,9);
+        }
+        //vertical
+        if(squares[1]==squares[4] && squares[4]==squares[7] && squares[1]!=""){
+            alert('player ' + squares[1] + ' wins the game')
+            rest(1,4,7);
+        }
+        if(squares[2]==squares[5] && squares[5]==squares[8] && squares[2]!=""){
+            alert('player ' + squares[2] + ' wins the game')
+            rest(2,5,8);
+        }
+        if(squares[3]==squares[6] && squares[6]==squares[9] && squares[3]!=""){
+            alert('player ' + squares[3] + ' wins the game')
+            rest(3,6,9);
+        }
+         if(squares[3]==squares[5] && squares[5]==squares[7] && squares[3]!=""){
+            alert('player ' + squares[3] + ' wins the game')
+            rest(3,5,7);
+        }
+    }
+        function insert(id){
+            var S = document.getElementById(id);
+            if(turn && S.innerHTML==""){
+                S.innerHTML= "X";
+                turn = !turn;
+            }else if(!turn && S.innerHTML==""){
+                S.innerHTML= "O";
+                turn = !turn;
+            }
+            checkWinner();
+
+        }
+        
+    </script>
+    
+</body>
+</html>
